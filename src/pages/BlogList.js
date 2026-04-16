@@ -1,27 +1,78 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { BlogContext } from "../context/BlogContext";
-import { Link } from "react-router-dom";
 
-export default function BlogList() {
-  const { blogs, deleteBlog } = useContext(BlogContext);
+const BlogList = () => {
+  const { blogs, deleteBlog, updateBlog } = useContext(BlogContext);
+
+  const [editingId, setEditingId] = useState(null);
+  const [editData, setEditData] = useState({
+    title: "",
+    content: "",
+  });
+
+  const startEdit = (blog) => {
+    setEditingId(blog.id);
+    setEditData({
+      title: blog.title,
+      content: blog.content,
+    });
+  };
+
+  const handleUpdate = () => {
+    updateBlog(editingId, editData);
+    setEditingId(null);
+  };
 
   return (
     <div className="container">
-      <h1>Blogs</h1>
+      <h1>All Blogs</h1>
 
       {blogs.length === 0 ? (
-        <p>No blogs yet 😢</p>
+        <p className="empty">No blogs yet 🚀</p>
       ) : (
         blogs.map((blog) => (
           <div className="card" key={blog.id}>
-            <h3>{blog.title}</h3>
-            <p>{blog.body}</p>
+            {editingId === blog.id ? (
+              <>
+                <input
+                  value={editData.title}
+                  onChange={(e) =>
+                    setEditData({
+                      ...editData,
+                      title: e.target.value,
+                    })
+                  }
+                />
+                <textarea
+                  value={editData.content}
+                  onChange={(e) =>
+                    setEditData({
+                      ...editData,
+                      content: e.target.value,
+                    })
+                  }
+                />
+                <button onClick={handleUpdate}>Save</button>
+              </>
+            ) : (
+              <>
+                <h3>{blog.title}</h3>
+                <p>{blog.content}</p>
 
-            <Link to={`/blogs/${blog.id}`}>View</Link>
-            <button onClick={() => deleteBlog(blog.id)}>Delete</button>
+                <button onClick={() => startEdit(blog)}>
+                  Edit
+                </button>
+
+                <button onClick={() => deleteBlog(blog.id)}>
+                  Delete
+                </button>
+              </>
+            )}
           </div>
         ))
       )}
     </div>
   );
-}
+};
+
+export default BlogList;

@@ -1,29 +1,45 @@
 import { useState, useContext } from "react";
 import { BlogContext } from "../context/BlogContext";
 
-export default function CreateBlog() {
+const CreateBlog = () => {
   const { createBlog } = useContext(BlogContext);
-  const [title, setTitle] = useState("");
-  const [body, setBody] = useState("");
+
+  const [form, setForm] = useState({
+    title: "",
+    content: "",
+  });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    createBlog({ title, body });
+    createBlog(form);
+    setForm({ title: "", content: "" });
   };
 
   return (
-    <div className="form">
-      <h2>Create Blog</h2>
-      <form onSubmit={handleSubmit}>
-        <input value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Title" />
-        <textarea value={body} onChange={(e) => setBody(e.target.value)} placeholder="Body" />
-        <button>Create</button>
+    <div className="container">
+      <h1>Create Blog</h1>
+
+      <form className="form" onSubmit={handleSubmit}>
+        <input
+          placeholder="Title"
+          value={form.title}
+          onChange={(e) =>
+            setForm({ ...form, title: e.target.value })
+          }
+        />
+
+        <textarea
+          placeholder="Content"
+          value={form.content}
+          onChange={(e) =>
+            setForm({ ...form, content: e.target.value })
+          }
+        />
+
+        <button type="submit">Create Blog</button>
       </form>
     </div>
   );
-}
-<div className="container">
-  <div className="form">
-    {/* form content */}
-  </div>
-</div>
+};
+
+export default CreateBlog;

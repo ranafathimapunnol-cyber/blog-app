@@ -6,23 +6,29 @@ export const BlogContext = createContext();
 export const BlogProvider = ({ children }) => {
   const [blogs, setBlogs] = useState([]);
 
+  const API = "http://127.0.0.1:8000/api/blogs/";
+
   const fetchBlogs = async () => {
-    const res = await axios.get("http://127.0.0.1:8000/api/blogs/");
-    setBlogs(res.data);
+    try {
+      const res = await axios.get(API);
+      setBlogs(res.data);
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   const createBlog = async (blog) => {
-    await axios.post("http://127.0.0.1:8000/api/blogs/", blog);
+    await axios.post(API, blog);
     fetchBlogs();
   };
 
   const deleteBlog = async (id) => {
-    await axios.delete(`http://127.0.0.1:8000/api/blogs/${id}/`);
+    await axios.delete(`${API}${id}/`);
     fetchBlogs();
   };
 
   const updateBlog = async (id, blog) => {
-    await axios.put(`http://127.0.0.1:8000/api/blogs/${id}/`, blog);
+    await axios.put(`${API}${id}/`, blog);
     fetchBlogs();
   };
 
@@ -31,7 +37,9 @@ export const BlogProvider = ({ children }) => {
   }, []);
 
   return (
-    <BlogContext.Provider value={{ blogs, createBlog, deleteBlog, updateBlog }}>
+    <BlogContext.Provider
+      value={{ blogs, createBlog, deleteBlog, updateBlog }}
+    >
       {children}
     </BlogContext.Provider>
   );

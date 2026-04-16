@@ -1,20 +1,20 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { BlogProvider } from "./context/BlogContext";
-import CreateBlog from "./pages/CreateBlog";
 import BlogList from "./pages/BlogList";
-import BlogDetail from "./pages/BlogDetail";
-import "./App.css";
+import CreateBlog from "./pages/CreateBlog";
+import Navbar from "./components/Navbar";
 
 function App() {
   return (
     <BlogProvider>
-      <BrowserRouter>
+      <Router>
+        <Navbar />
+
         <Routes>
           <Route path="/" element={<BlogList />} />
-          <Route path="/createblog" element={<CreateBlog />} />
-          <Route path="/blogs/:id" element={<BlogDetail />} />
+          <Route path="/create" element={<CreateBlog />} />
         </Routes>
-      </BrowserRouter>
+      </Router>
     </BlogProvider>
   );
 }
