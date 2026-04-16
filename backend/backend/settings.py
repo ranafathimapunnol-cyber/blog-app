@@ -80,7 +80,8 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 
 DATABASES = {
     'default': dj_database_url.config(
-        default='postgresql://postgres:fullstack@localhost:5432/blogdb'
+        default=os.environ.get("DATABASE_URL"),
+        conn_max_age=600
     )
 }
 
