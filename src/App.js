@@ -3,6 +3,7 @@ import { BlogProvider } from "./context/BlogContext";
 import BlogList from "./pages/BlogList";
 import CreateBlog from "./pages/CreateBlog";
 import Navbar from "./components/Navbar";
+import "./App.css";
 
 function App() {
   return (

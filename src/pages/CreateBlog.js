@@ -6,13 +6,23 @@ const CreateBlog = () => {
 
   const [form, setForm] = useState({
     title: "",
-    content: "",
+    body: "",   // ✅ use body (match backend)
   });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    createBlog(form);
-    setForm({ title: "", content: "" });
+
+    console.log("Sending:", form);
+
+    // ✅ validation
+    if (!form.title.trim() || !form.body.trim()) {
+      alert("Please fill all fields!");
+      return;
+    }
+
+    createBlog(form);  // ✅ now sends { title, body }
+
+    setForm({ title: "", body: "" });
   };
 
   return (
@@ -30,9 +40,9 @@ const CreateBlog = () => {
 
         <textarea
           placeholder="Content"
-          value={form.content}
+          value={form.body}
           onChange={(e) =>
-            setForm({ ...form, content: e.target.value })
+            setForm({ ...form, body: e.target.value })
           }
         />
 

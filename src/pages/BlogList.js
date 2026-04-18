@@ -7,19 +7,24 @@ const BlogList = () => {
   const [editingId, setEditingId] = useState(null);
   const [editData, setEditData] = useState({
     title: "",
-    content: "",
+    body: "",   // ✅ use body (same as backend)
   });
 
   const startEdit = (blog) => {
     setEditingId(blog.id);
     setEditData({
       title: blog.title,
-      content: blog.content,
+      body: blog.body,   // ✅ FIX
     });
   };
 
   const handleUpdate = () => {
-    updateBlog(editingId, editData);
+    if (!editData.title.trim() || !editData.body.trim()) {
+      alert("Fields cannot be empty!");
+      return;
+    }
+
+    updateBlog(editingId, editData); // ✅ already correct now
     setEditingId(null);
   };
 
@@ -43,21 +48,23 @@ const BlogList = () => {
                     })
                   }
                 />
+
                 <textarea
-                  value={editData.content}
+                  value={editData.body}
                   onChange={(e) =>
                     setEditData({
                       ...editData,
-                      content: e.target.value,
+                      body: e.target.value,
                     })
                   }
                 />
+
                 <button onClick={handleUpdate}>Save</button>
               </>
             ) : (
               <>
                 <h3>{blog.title}</h3>
-                <p>{blog.content}</p>
+                <p>{blog.body}</p> {/* ✅ already correct */}
 
                 <button onClick={() => startEdit(blog)}>
                   Edit

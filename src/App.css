@@ -1,4 +1,4 @@
-/* 🌈 GLOBAL */
+/* ========== NEUROGLASSMORPHISM · PURE BEIGE THEME ========== */
 * {
   margin: 0;
   padding: 0;
@@ -6,142 +6,275 @@
 }
 
 body {
-  font-family: "Poppins", sans-serif;
-  background: linear-gradient(135deg, #6f6a57, #141313);
-  color: #fff;
+  font-family: "Poppins", system-ui, sans-serif;
+  background: linear-gradient(145deg, #161209 0%, #1e1601 50%, #211601 100%);
+  color: #f5efe6;
   min-height: 100vh;
 }
 
-/* 🧭 NAVBAR */
+/* 🧭 NAVBAR - FIXED when scrolling */
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 30px;
-  background: rgba(0, 0, 0, 0.25);
+  padding: 16px 32px;
+  background: rgba(245, 239, 230, 0.08);
   backdrop-filter: blur(12px);
-  position: sticky;
+  border-bottom: 1px solid rgba(210, 190, 160, 0.3);
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
+
+/* Optional: add shadow on scroll (you can add this with JS) */
+.navbar.scrolled {
+  background: rgba(42, 36, 24, 0.95);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
 .navbar h2 {
-  font-size: 22px;
+  font-size: 1.5rem;
+  background: linear-gradient(135deg, #f5efe6, #d4c4a8, #b8a88a);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 .navbar a {
-  margin-left: 20px;
-  color: #ffd369;
+  margin-left: 24px;
+  color: #d4c4a8;
   text-decoration: none;
   font-weight: 600;
+  transition: 0.2s;
 }
 
 .navbar a:hover {
-  text-decoration: underline;
+  color: #f5efe6;
+  text-shadow: 0 0 8px rgba(210, 190, 160, 0.5);
 }
 
-/* 📦 MAIN CONTAINER */
+/* Add padding to body to prevent content from hiding under fixed nav */
+body {
+  padding-top: 70px;
+}
+
+/* Adjust container position */
 .container {
-  max-width: 900px;
-  margin: 40px auto;
-  padding: 20px;
+  max-width: 1000px;
+  margin: 0 auto 40px auto;
+  padding: 0 20px;
 }
 
-/* 🏷️ TITLE */
+/* 🏷️ TITLE - beige gradient */
 h1 {
   text-align: center;
-  margin-bottom: 30px;
-  font-size: 32px;
+  margin-bottom: 35px;
+  font-size: 2.5rem;
+  background: linear-gradient(135deg, #d7d4cf, #e8e5e0, #c0ae8c);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-weight: 700;
+  margin-top: 0;
 }
 
-/* 💎 CARD */
+/* 💎 CARDS - beige glass */
 .card {
-  background: rgba(255, 255, 255, 0.12);
-  backdrop-filter: blur(14px);
-  padding: 20px;
-  border-radius: 16px;
-  margin-bottom: 20px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  background: rgba(61, 35, 13, 0.06);
+  backdrop-filter: blur(12px);
+  border-radius: 24px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  border: 1px solid rgba(210, 190, 160, 0.3);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
   transition: all 0.3s ease;
 }
 
 .card:hover {
-  transform: translateY(-6px);
+  transform: translateY(-4px);
+  border-color: #d4c4a8;
+  box-shadow: 0 12px 28px #d4d1cc26;
+  background: rgba(233, 229, 223, 0.1);
 }
 
-/* 📝 TEXT */
 .card h3 {
+  font-size: 1.5rem;
   margin-bottom: 10px;
+  background: linear-gradient(135deg, #e8dcc8, #d4c4a8);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 .card p {
   opacity: 0.9;
-  margin-bottom: 15px;
+  margin-bottom: 16px;
+  line-height: 1.5;
+  color: #f5efe6;
 }
 
-/* 🔗 LINKS */
-.card a {
-  color: #2b1706;
-  margin-right: 12px;
-  text-decoration: none;
-  font-weight: 600;
-}
-
-.card a:hover {
-  text-decoration: underline;
-}
-
-/* 🔘 BUTTONS */
-button {
-  background: linear-gradient(135deg, #c8b6a8, #1b1a18);
-  border: none;
-  padding: 8px 14px;
-  border-radius: 8px;
-  color: white;
+/* 🔥 STUNNING BUTTONS - beige glass */
+button, .delete-btn {
+  background: linear-gradient(135deg, rgba(210, 190, 160, 0.15), rgba(180, 160, 130, 0.15));
+  border: 1.5px solid rgba(210, 190, 160, 0.5);
+  padding: 8px 20px;
+  border-radius: 40px;
+  color: #e8dcc8;
   font-weight: 600;
   cursor: pointer;
-  transition: 0.3s;
+  transition: all 0.25s ease;
+  font-size: 0.85rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  backdrop-filter: blur(4px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
-button:hover {
+button:hover, .delete-btn:hover {
+  background: linear-gradient(135deg, #d4c4a8, #b8a88a);
+  color: #2a2418;
+  border-color: transparent;
   transform: scale(1.05);
-  opacity: 0.9;
+  box-shadow: 0 4px 15px rgba(210, 190, 160, 0.3);
 }
 
-/* ✍️ FORM */
+/* delete button variant - darker beige */
+.delete-btn {
+  border-color: rgba(160, 135, 105, 0.5);
+  color: #c0ae8c;
+}
+
+.delete-btn:hover {
+  background: linear-gradient(135deg, #b8a88a, #9a8568);
+  color: #2a2418;
+  border-color: transparent;
+}
+
+/* ✨ FORM - beige glass */
 .form {
-  background: rgba(255, 255, 255, 0.12);
-  padding: 25px;
-  border-radius: 16px;
-  backdrop-filter: blur(14px);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  background: rgba(245, 239, 230, 0.06);
+  backdrop-filter: blur(16px);
+  border-radius: 28px;
+  padding: 28px;
+  border: 1px solid rgba(210, 190, 160, 0.3);
+  margin-top: 20px;
+  margin-bottom: 40px;
 }
 
-/* 🧾 INPUT */
+.form h3 {
+  font-size: 1.6rem;
+  margin-bottom: 20px;
+  background: linear-gradient(135deg, #e8dcc8, #d4c4a8);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* 🧾 INPUTS - beige glass fields */
 input, textarea {
   width: 100%;
-  padding: 12px;
+  padding: 12px 16px;
   margin: 12px 0;
-  border-radius: 10px;
-  border: none;
+  border-radius: 20px;
+  border: 1px solid rgba(210, 190, 160, 0.3);
+  background: rgba(42, 36, 24, 0.6);
+  color: #f5efe6;
+  font-size: 0.95rem;
   outline: none;
-  font-size: 14px;
+  transition: all 0.2s;
 }
 
-/* 🚀 EMPTY STATE */
-.empty {
-  text-align: center;
-  opacity: 0.7;
-  margin-top: 40px;
+input:focus, textarea:focus {
+  border-color: #d4c4a8;
+  background: rgba(42, 36, 24, 0.8);
+  box-shadow: 0 0 12px rgba(210, 190, 160, 0.25);
+}
+
+textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+/* 🔘 BUTTON GROUP */
+.card-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.form-buttons {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
 }
 
 /* 📱 RESPONSIVE */
 @media (max-width: 600px) {
-  .container {
-    padding: 10px;
-  }
-
   .navbar {
     flex-direction: column;
-    gap: 10px;
+    gap: 12px;
+    padding: 12px 20px;
   }
+  
+  body {
+    padding-top: 90px;
+  }
+  
+  .container {
+    padding: 0 16px;
+  }
+  
+  h1 {
+    font-size: 1.8rem;
+  }
+  
+  .card {
+    padding: 1.2rem;
+  }
+}
+
+/* 🌈 EMPTY STATE */
+.empty {
+  text-align: center;
+  padding: 40px;
+  background: rgba(245, 239, 230, 0.04);
+  border-radius: 28px;
+  border: 1px dashed rgba(210, 190, 160, 0.4);
+}
+
+/* 🎨 SCROLLBAR */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #3d3524;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #d4c4a8, #b8a88a);
+  border-radius: 10px;
+}
+
+/* 🔗 LINKS */
+.card a, .edit-link {
+  color: #d4c4a8;
+  margin-right: 16px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.card a:hover, .edit-link:hover {
+  color: #f5efe6;
+  text-shadow: 0 0 6px rgba(210, 190, 160, 0.4);
+  transform: translateX(2px);
 }
