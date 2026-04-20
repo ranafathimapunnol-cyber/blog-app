@@ -1,17 +1,17 @@
-import { createContext, useState, useEffect } from "react"; 
+import { createContext, useState, useEffect } from "react";
 import axios from "axios";
 
-export const BlogContext = createContext(); 
+export const BlogContext = createContext();
 
 export const BlogProvider = ({ children }) => { // 🗂️ State to hold blogs , children means the components that will use this context
   const [blogs, setBlogs] = useState([]);  //backend API URL
 
-  const API = "http://127.0.0.1:8000/api/blogs/"; 
+  const API = "https://blog-app-production-0e65.up.railway.app/api/blogs/";
 
   // 🔄 GET
   const fetchBlogs = async () => {
     try {
-      const res = await axios.get(API); 
+      const res = await axios.get(API);
       setBlogs(res.data);
     } catch (error) {
       console.error("Fetch Error:", error);
@@ -38,7 +38,7 @@ export const BlogProvider = ({ children }) => { // 🗂️ State to hold blogs ,
   // ❌ DELETE
   const deleteBlog = async (id) => {
     try {
-      await axios.delete(`${API}${id}/`); 
+      await axios.delete(`${API}${id}/`);
       fetchBlogs();
     } catch (error) {
       console.error("Delete Error:", error);
@@ -64,7 +64,7 @@ export const BlogProvider = ({ children }) => { // 🗂️ State to hold blogs ,
   }, []);
 
   return (
-    <BlogContext.Provider 
+    <BlogContext.Provider
       value={{ blogs, createBlog, deleteBlog, updateBlog }}
     >
       {children}
