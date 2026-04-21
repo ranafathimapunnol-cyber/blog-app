@@ -1,11 +1,31 @@
-from pathlib import Path
 import os
 import dj_database_url
-from dotenv import load_dotenv   # ✅ ADD THIS
+from pathlib import Path
 
-load_dotenv()                    # ✅ ADD THIS
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+
+# -----------------------------
+# DATABASE CONFIGURATION
+# -----------------------------
+
+DATABASE_URL = os.getenv("DATABASE_URL")
+
+if DATABASE_URL:
+    # Clean string safety (fixes b'' issue)
+    if isinstance(DATABASE_URL, bytes):
+        DATABASE_URL = DATABASE_URL.decode("utf-8")
+
+    DATABASES = {
+        "default": dj_database_url.parse(DATABASE_URL)
+    }
+
+else:
+    # Fallback for local development
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
+        }
+    }
 
 
 # Quick-start development settings - unsuitable for production
@@ -69,11 +89,6 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
-
-
-DATABASES = {
-    'default': dj_database_url.parse(os.getenv("DATABASE_URL"))
-}
 
 
 # Password validation
